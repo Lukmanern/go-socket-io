@@ -1,28 +1,16 @@
 <html>
   <head>
-    <script
-      src="https://cdn.socket.io/4.3.2/socket.io.min.js"
-      integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
   </head>
 
   <body>
     <div>
-      <ul id="messages">
-      </ul>
-    </div>
-
-    <div>
-      <input id="message" type="text" />
-      <button onclick="handleSubmitNewMessage()">Submit</button>
+      <ul id="messages"></ul>
     </div>
     <script>
       // Connect to the server using websockets
       const socket = io('http://localhost:3000', { transports: ['websocket'] });
 
-      // Get the input and messages elements from the HTML
-      const message = document.getElementById('message');
       const messages = document.getElementById('messages');
 
       // handleSubmitNewMessage() sends the new message
@@ -40,12 +28,12 @@
 
       // handleNewMessage() creates a new message
       // element and appends it to the list of messages
-      const handleNewMessage = (message) => {
+      const handleNewMessage = message => {
         messages.appendChild(buildNewMessage(message));
       };
 
       // buildNewMessage() creates a new message element
-      const buildNewMessage = (message) => {
+      const buildNewMessage = message => {
         const time = new Date();
         const li = document.createElement('li');
         li.appendChild(document.createTextNode(message));
